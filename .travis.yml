@@ -9,3 +9,15 @@ script:
     - docker run -e CI=true neerajp/docker-react npm run test
     
 language: generic
+
+deploy:
+    provider: elasticbeanstalk
+    region: "us-east-1"
+    app: "docker-react-webapp"
+    env: "DockerReactWebapp-env"
+    bucket_name: "elasticbeanstalk-us-east-1-753792009699"
+    bucket_path: "docker-react-webapp"
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
